@@ -1,9 +1,12 @@
 import com.sun.source.tree.Tree;
 
+import java.sql.Array;
 import java.sql.SQLOutput;
 import java.util.*;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
+
 class Pair{
     int i,j;
 }
@@ -37,7 +40,7 @@ public class CheatBookJavaCollections {
         treeSet.add(numsList.get(0));
         treeSet.add(numsList.get(1));
         treeSet.add(numsList.getLast());
-        for (int item:treeSet) {
+        for (int item : treeSet) {
             System.out.print(item + "**");
         }
         System.out.println();
@@ -47,7 +50,7 @@ public class CheatBookJavaCollections {
         linkedHashset.add(numsList.getLast());
         linkedHashset.add(numsList.get(1));
 
-        for (int item:linkedHashset) {
+        for (int item : linkedHashset) {
             System.out.print("--linkedHashSet: " + item);
         }
 //        format of storage will be similar to array but in a linked list fashion for retreival and storage.
@@ -57,7 +60,7 @@ public class CheatBookJavaCollections {
         arrlist.add(30);
         arrlist.add(56);
         int i = 0;
-        for(int item:arrlist) {
+        for (int item : arrlist) {
             arrList2.add(item);
             i++;
             //        System.out.println(item);
@@ -81,7 +84,6 @@ public class CheatBookJavaCollections {
         System.out.println("Elements in reverse order: " + reverseSet);
         Queue<Pair> que = new LinkedList<>(); //linked list declaration.
 
-    }
 
     /*
 
@@ -110,6 +112,13 @@ Using Integer.compare handles this case safely:
 
 Integer.compare(a[0], b[0]);
 */
-
-
+        int[][] dp = new int[5][5];
+        Arrays.stream(dp).forEach(row -> Arrays.fill(row, -1));
+        for (int[] rowItem: dp) {
+            for (int val:rowItem) {
+                System.out.print(val);
+            }
+            System.out.println();
+        }
+    }
 }
