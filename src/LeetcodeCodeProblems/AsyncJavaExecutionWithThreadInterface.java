@@ -1,4 +1,3 @@
-
 /*Notes
 	•	new AsyncTask() does not create a new thread by itself.
 	•	CompletableFuture.runAsync(new AsyncTask()) does not explicitly create a thread.
@@ -50,9 +49,10 @@ public class AsyncJavaExecutionWithThreadInterface {
 
     }
 }
-/*Thread class example as well for manipulating the threads and providing dynnamic threads in order to avoid
-* using the ThreadForkJoinPool
-* class MyTask extends Thread {
+
+/* Code for using the thread class instead of interface runnable in case of using the start()
+ method adn also using the fixed set of threads for the usecase
+ * class MyTask extends Thread {
     private final int taskId;
 
     public MyTask(int taskId) {
@@ -86,5 +86,4 @@ public class ThreadExample {
 
         System.out.println("Main thread continues execution...");
     }
-}
-* */
+}*/
