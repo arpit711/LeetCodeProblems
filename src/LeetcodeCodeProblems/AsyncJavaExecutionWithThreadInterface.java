@@ -1,0 +1,52 @@
+
+/*Notes
+	•	new AsyncTask() does not create a new thread by itself.
+	•	CompletableFuture.runAsync(new AsyncTask()) does not explicitly create a thread.
+	•	Instead, it submits the Runnable task to the ForkJoinPool.commonPool(), which is a shared thread pool.
+
+This means:
+✅ A new thread from the pool picks up AsyncTask and executes it asynchronously.
+✅ It does not create a dedicated thread per AsyncTask object, but reuses worker threads.
+*/
+package LeetcodeCodeProblems;
+
+import java.util.concurrent.*;
+
+public class AsyncJavaExecutionWithThreadInterface {
+    public static class AsyncTask implements Runnable {
+        private int taskId;
+
+        public AsyncTask(int id) {
+            this.taskId = id;
+        }
+
+        @Override
+        public void run() {
+            System.out.println("Async task taskId: " + taskId + "Async Task running on: " + Thread.currentThread().getName());
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+            System.out.println("Async Task Completed");
+        }
+    }
+
+
+
+    public static void main(String[] args) {
+//        process to call fixed number of executor instances instead of FORKJOINPOOL that is default one and more efficient one.
+//        ExecutorService executor = Executors.newFixedThreadPool(3);
+//        CompletableFuture<Void> future = CompletableFuture.runAsync(new AsyncTask(1), executor);
+
+        System.out.println("Main thread: " + Thread.currentThread().getName());
+
+        CompletableFuture<Void> future1 = CompletableFuture.runAsync(new AsyncTask(1));
+        CompletableFuture<Void> future2 = CompletableFuture.runAsync(new AsyncTask(2));
+        System.out.println("Main thread continues execution...");
+
+        CompletableFuture.allOf(future1, future2).join(); // Wait for async task to complete
+        System.out.println("Main thread ends.");
+
+    }
+}

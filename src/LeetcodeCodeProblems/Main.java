@@ -1,3 +1,4 @@
+package LeetcodeCodeProblems;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,5 +25,7 @@ public class Main {
 
         // Print the outer list
         System.out.println(names);
+        AsyncJavaExecution obj = new AsyncJavaExecution();
+        obj.asyncCallExample();
     }
 }
