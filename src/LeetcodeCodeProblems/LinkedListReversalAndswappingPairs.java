@@ -3,8 +3,8 @@ package LeetcodeCodeProblems;
 public class LinkedListReversalAndswappingPairs {
 
 private static class Node {
-    int data;
-    Node next;
+    private int data;
+    private Node next;
 
     Node(int data) {
         this.data = data;
@@ -35,9 +35,9 @@ private static class Node {
 //        }
         printList(head);
         System.out.println("after Method calls");
-        head = reversePairsRecursive(head);
+//        head = reversePairsRecursive(head);
 //        head = reversePairsIterative(head);
-//        head = reverseListRecursive(head, null);
+        head = reverseListRecursive(head, null);
 //        head = reverseListIterative(head);
         printList(head);
     }
