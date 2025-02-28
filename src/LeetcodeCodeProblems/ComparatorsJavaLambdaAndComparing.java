@@ -6,21 +6,21 @@ import java.util.stream.Collectors;
 
 public class ComparatorsJavaLambdaAndComparing {
     public static void main(String[] args) {
-        int[][] arr = {{3,1},{5,3},{4,2},{5,6},{2,3},{4,6}};
-        arr = Arrays.stream(arr).sorted((a, b)->Integer.compare(b[0], a[0]))
-               .toArray(int[][]::new);
-//        for (int[] item : arr) {
-//            System.out.print(item[0] + " " + item[1]);
-//            System.out.println();
-//        }
+        int[][] arr = {{3, 1}, {5, 3}, {4, 2}, {5, 6}, {2, 3}, {4, 6}};
+        arr = Arrays.stream(arr).sorted((a, b) -> Integer.compare(b[0], a[0]))
+                .toArray(int[][]::new);
+        for (int[] item : arr) {
+            System.out.print(item[0] + " " + item[1]);
+            System.out.println();
+        }
 
-        arr = Arrays.stream(arr).sorted((a, b)->Integer.compare(b[1], a[1]))
+        arr = Arrays.stream(arr).sorted((a, b) -> Integer.compare(b[1], a[1]))
                 .toArray(int[][]::new);
         System.out.println("******************");
-//        for (int[] item : arr) {
-//            System.out.print(item[0] + " " + item[1]);
-//            System.out.println();
-//        }
+        for (int[] item : arr) {
+            System.out.print(item[0] + " " + item[1]);
+            System.out.println();
+        }
 
 //        stream with second level of sorting used here.
         List<int[]> sortedList = Arrays.stream(arr)
@@ -37,26 +37,29 @@ public class ComparatorsJavaLambdaAndComparing {
                 })
                 .toList();
 
-        for (int[] arrItem: sortedListDescending) {
+        for (int[] arrItem : sortedListDescending) {
             System.out.println(Arrays.toString(arrItem));
         }
         System.out.println("******Running the priority queue elements traversal*****");
 
-        //        apppl the same analorgy to the priority queue as well whenever we need to
-//        set elements in a queue in a second order of sorting technique
-        PriorityQueue<int[]> pq = new PriorityQueue<>((a,b)->{
+/*
+        apppl the same analorgy to the priority queue as well whenever we need to
+        set elements in a queue in a second order of sorting technique.
+        Integer.compare(a[0], b[0]) means a is first element and b is second elelment also a[0] indicates
+        the first element of the pair and a[1] indicated the second element of the pair or the array
+        dataStructure being used.
+
+*/
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> {
             int firstCompare = Integer.compare(b[0], a[0]);
             return (firstCompare != 0) ? firstCompare : Integer.compare(a[1], b[1]);
         });
-
-        for (int[] arrItem: sortedListDescending) {
+        for (int[] arrItem : sortedListDescending) {
             pq.offer(arrItem);
-            pq.offer(new int[]{999,999});
+            pq.offer(new int[]{999, 999});
         }
-
         while (!pq.isEmpty()) {
             System.out.println(Arrays.toString(pq.poll()));
         }
-
     }
 }
