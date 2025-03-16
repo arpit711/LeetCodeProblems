@@ -8,7 +8,7 @@ import java.util.Queue;
 public class MultisetBFS {
 
     public int countServers(int[][] grid) {
-        
+
         int m = grid.length, n = grid[0].length;
         int[] dir = {-1, 0, 1, 0};
         int level = 1;
@@ -18,7 +18,7 @@ public class MultisetBFS {
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
                 if (grid[i][j] == 1) {
-                    queue.offer(new int[]{i , j});
+                    queue.offer(new int[]{i, j});
                 }
             }
         }
@@ -33,7 +33,7 @@ public class MultisetBFS {
                 for (int k = 0; k < 4; k++) {
                     newiIndex = dir[k] + iIndex;
                     newjIndex = dir[(k + 1) % 4] + jIndex;
-                    if (isValid(newiIndex, newjIndex, m, n) && !(visited[newiIndex][newjIndex] >0)) {
+                    if (isValid(newiIndex, newjIndex, m, n) && !(visited[newiIndex][newjIndex] > 0)) {
                         queue.offer(new int[]{newiIndex, newjIndex});
                     }
                 }
@@ -53,6 +53,6 @@ public class MultisetBFS {
     }
 
     private boolean isValid(int newiIndex, int newjIndex, int m, int n) {
-        return (newiIndex >= 0 && newjIndex >=0 && newjIndex < n && newiIndex < m);
+        return (newiIndex >= 0 && newjIndex >= 0 && newjIndex < n && newiIndex < m);
     }
 }

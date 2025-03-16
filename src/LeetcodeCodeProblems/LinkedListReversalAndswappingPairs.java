@@ -2,15 +2,6 @@ package LeetcodeCodeProblems;
 
 public class LinkedListReversalAndswappingPairs {
 
-private static class Node {
-    private int data;
-    private Node next;
-
-    Node(int data) {
-        this.data = data;
-        this.next = null;
-    }
-}
     public static void linkedListProblem() {
         Node tempNode;
         Node head = new Node(8);
@@ -41,7 +32,6 @@ private static class Node {
 //        head = reverseListIterative(head);
         printList(head);
     }
-
 
     public static Node reversePairsIterative(Node head) {
 
@@ -94,7 +84,6 @@ private static class Node {
         return head;  // New head after swap
     }
 
-
     public static void printList(Node head) {
 
         while (head != null) {
@@ -128,11 +117,20 @@ private static class Node {
         return currentNode;
     }
 
-
     public static void main(String[] args) {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
         linkedListProblem();
+    }
+
+    private static class Node {
+        private final int data;
+        private Node next;
+
+        Node(int data) {
+            this.data = data;
+            this.next = null;
+        }
     }
 }
 

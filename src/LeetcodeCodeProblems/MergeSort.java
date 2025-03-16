@@ -2,25 +2,23 @@ package LeetcodeCodeProblems;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 //instead of passing by reference for the variables the best idea is to use the class for the same.
 /*and the class will encapsulate the object inside of it otherwise the static element will return
  the same output everytime and will be wrong answer always*/
 public class MergeSort {
-    public static class Counter {
-        int countInversions = 0; // Encapsulates the count of inversions
-    }
-//    static int countInversions = 0;
+    //    static int countInversions = 0;
     public static List<Integer> mergeSort(List<Integer> arr, int start, int end, Counter counter) {
 
         if (start == end) {
-            return (new ArrayList<Integer>(Arrays.asList(arr.get(start))));
+            return (new ArrayList<Integer>(Collections.singletonList(arr.get(start))));
         }
         int mid = (start + end) / 2;
         List<Integer> array1 = mergeSort(arr, start, mid, counter);
         List<Integer> array2 = mergeSort(arr, mid + 1, end, counter);
-        return mergeArray(array1, array2,counter);
+        return mergeArray(array1, array2, counter);
 
     }
 
@@ -57,11 +55,15 @@ public class MergeSort {
 
     public static void main(String[] args) {
 //        int[] arr1 = {3,1,5,4,2,0,9,8};
-        List<Integer> arr = Arrays.asList(6,5,4,3,2,1);
-        System.out.println(arr.toString());
+        List<Integer> arr = Arrays.asList(6, 5, 4, 3, 2, 1);
+        System.out.println(arr);
         Counter counter = new Counter();
-       List<Integer> arrNew= mergeSort(arr, 0, arr.size() - 1, counter);
-        System.out.println(arrNew.toString());
+        List<Integer> arrNew = mergeSort(arr, 0, arr.size() - 1, counter);
+        System.out.println(arrNew);
         System.out.println("Inversions count: " + counter.countInversions);
+    }
+
+    public static class Counter {
+        int countInversions = 0; // Encapsulates the count of inversions
     }
 }

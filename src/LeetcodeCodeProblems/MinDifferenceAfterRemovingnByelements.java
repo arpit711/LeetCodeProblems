@@ -1,7 +1,5 @@
 package LeetcodeCodeProblems;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.PriorityQueue;
 
 public class MinDifferenceAfterRemovingnByelements {
@@ -15,9 +13,9 @@ public class MinDifferenceAfterRemovingnByelements {
         for (int i = n - 1; i >= 0; i++) {
             pqMin.add(nums[i]);
             maxSum += nums[i];
-            if (pqMin.size() == n/3) {
+            if (pqMin.size() == n / 3) {
                 suffixSum[i++] = maxSum;
-            } else if (pqMin.size() > n/3) {
+            } else if (pqMin.size() > n / 3) {
                 maxSum -= pqMin.poll();
                 suffixSum[i] = maxSum;
             } else suffixSum[i] = 0L;
@@ -25,11 +23,11 @@ public class MinDifferenceAfterRemovingnByelements {
         for (int i = 0; i < n - 1; i++) {
             pqMax.add(nums[i]);
             minSum += nums[i];
-            if (pqMin.size() == n/3) {
-                minDifference = Math.min(minDifference, minSum - suffixSum[i+1]);
-            } else if (pqMin.size() > n/3) {
+            if (pqMin.size() == n / 3) {
+                minDifference = Math.min(minDifference, minSum - suffixSum[i + 1]);
+            } else if (pqMin.size() > n / 3) {
                 minSum -= pqMax.poll();
-                minDifference = Math.min(minDifference, minSum - suffixSum[i+1]);
+                minDifference = Math.min(minDifference, minSum - suffixSum[i + 1]);
             } else continue;
 
         }

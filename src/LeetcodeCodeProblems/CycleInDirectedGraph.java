@@ -1,9 +1,12 @@
 package LeetcodeCodeProblems;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
-class Pair{
+class Pair {
     int node, parent;
+
     Pair(int node, int parent) {
         this.node = node;
         this.parent = parent;
@@ -16,7 +19,7 @@ public class CycleInDirectedGraph {
         Queue<Pair> bfsQueue = new LinkedList<>();
         boolean[] isVisited = new boolean[adj.size()];
         if (adj.size() == 1) return false;
-        bfsQueue.add(new Pair(0,-1));
+        bfsQueue.add(new Pair(0, -1));
         while (!bfsQueue.isEmpty()) {
             Pair pair = bfsQueue.poll();
             int node = pair.node;

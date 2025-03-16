@@ -1,15 +1,9 @@
-import com.sun.source.tree.Tree;
-
-import java.sql.Array;
-import java.sql.SQLOutput;
 import java.util.*;
-import java.util.Set;
-import java.util.TreeSet;
-import java.util.stream.Collectors;
 
-class Pair{
-    int i,j;
+class Pair {
+    int i, j;
 }
+
 public class CheatBookJavaCollections {
     public static void main(String[] args) {
         Set<String> names = new HashSet<String>();
@@ -86,7 +80,6 @@ public class CheatBookJavaCollections {
 
 
     /*
-
         Array custom sorting
         Arrays.sort(A, Comparator.comparingInt((int[] row) -> row[0]) // First parameter
             .thenComparingInt(row -> row[1]));    // Second parameter for ties
@@ -112,6 +105,8 @@ Using Integer.compare handles this case safely:
 
 Integer.compare(a[0], b[0]);
 */
+/*        Filling the Array with same values for initial run
+
         int[][] dp = new int[5][5];
         Arrays.stream(dp).forEach(row -> Arrays.fill(row, -1));
         for (int[] rowItem: dp) {
@@ -119,6 +114,39 @@ Integer.compare(a[0], b[0]);
                 System.out.print(val);
             }
             System.out.println();
-        }
+        }*/
+
+//        here primitive type integer is used instead of int hence this sorting is working fine.
+//        Integer[] events =  new Integer[]{3,2,1,5,6,7,10};
+//        Arrays.sort(events, (a, b) -> a - b);
+//        System.out.println(Arrays.stream(events).toList().toString());
+
+/*
+//        Important Notes:
+        Even though int[][] holds primitive int values, each row (int[]) is actually an object reference (an array reference).
+	•	The outer array (int[][]) is an array of references to int[].
+	•	Arrays.sort() with a comparator works on arrays of objects, and since each row (int[]) is an object reference, it can be sorted using a comparator.
+
+✔ Key Insight: int[][] is not primitive at the top level—it’s an array of references (int[]), which allows sorting with a custom comparator.
+
+⸻
+*/
+//        refer this sheet for sorting based on Arrays.sort method using the lambda and primitive arguments
+        int[] events = new int[]{3, 2, 1, 5, 6, 7, 10};
+        Integer[] arr = Arrays.stream(events).boxed().toArray(Integer[]::new);
+        Arrays.sort(arr, (a, b) -> Integer.compare(a, b));
+        System.out.println(Arrays.stream(arr).toList().toString());
+
+
+//        int[][] sampleSort = new int[][]{{1,2},{3,6},{6,2},{2,9}};
+//        Arrays.sort(sampleSort, (a, b)->{
+//            return Integer.compare(a[0], b[0]);
+//        });
+//        for (int[] arr : sampleSort) {
+//            System.out.print(arr[0] + " " + arr[1] + ", ");
+//        }
+
     }
+
+
 }

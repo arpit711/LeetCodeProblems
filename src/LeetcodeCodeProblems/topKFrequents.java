@@ -5,13 +5,13 @@
 //import java.util.List;
 //import java.util.Map;
 //
-////2->4
-////3->7
-////1->4
-////To create a list of lists of integers in Java,
-//// you can use the List interface along with the ArrayList class.
-//// Java's List is an interface, and ArrayList is a class that implements it,
-//// allowing for dynamic arrays.
+/// /2->4
+/// /3->7
+/// /1->4
+/// /To create a list of lists of integers in Java,
+/// / you can use the List interface along with the ArrayList class.
+/// / Java's List is an interface, and ArrayList is a class that implements it,
+/// / allowing for dynamic arrays.
 //public class topKFrequents {
 //    public int[] topKFrequent(int[] nums, int k) {
 //        if (k == nums.length) return nums;

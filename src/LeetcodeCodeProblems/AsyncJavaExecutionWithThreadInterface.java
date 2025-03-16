@@ -9,11 +9,27 @@ This means:
 */
 package LeetcodeCodeProblems;
 
-import java.util.concurrent.*;
+import java.util.concurrent.CompletableFuture;
 
 public class AsyncJavaExecutionWithThreadInterface {
+    public static void main(String[] args) {
+//        process to call fixed number of executor instances instead of FORKJOINPOOL that is default one and more efficient one.
+//        ExecutorService executor = Executors.newFixedThreadPool(3);
+//        CompletableFuture<Void> future = CompletableFuture.runAsync(new AsyncTask(1), executor);
+
+        System.out.println("Main thread: " + Thread.currentThread().getName());
+
+        CompletableFuture<Void> future1 = CompletableFuture.runAsync(new AsyncTask(1));
+        CompletableFuture<Void> future2 = CompletableFuture.runAsync(new AsyncTask(2));
+        System.out.println("Main thread continues execution...");
+
+        CompletableFuture.allOf(future1, future2).join(); // Wait for async task to complete
+        System.out.println("Main thread ends.");
+
+    }
+
     public static class AsyncTask implements Runnable {
-        private int taskId;
+        private final int taskId;
 
         public AsyncTask(int id) {
             this.taskId = id;
@@ -29,24 +45,6 @@ public class AsyncJavaExecutionWithThreadInterface {
             }
             System.out.println("Async Task Completed");
         }
-    }
-
-
-
-    public static void main(String[] args) {
-//        process to call fixed number of executor instances instead of FORKJOINPOOL that is default one and more efficient one.
-//        ExecutorService executor = Executors.newFixedThreadPool(3);
-//        CompletableFuture<Void> future = CompletableFuture.runAsync(new AsyncTask(1), executor);
-
-        System.out.println("Main thread: " + Thread.currentThread().getName());
-
-        CompletableFuture<Void> future1 = CompletableFuture.runAsync(new AsyncTask(1));
-        CompletableFuture<Void> future2 = CompletableFuture.runAsync(new AsyncTask(2));
-        System.out.println("Main thread continues execution...");
-
-        CompletableFuture.allOf(future1, future2).join(); // Wait for async task to complete
-        System.out.println("Main thread ends.");
-
     }
 }
 

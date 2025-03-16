@@ -4,20 +4,9 @@ import java.util.ArrayList;
 import java.util.TreeMap;
 
 public class MaxStack {
-    private class Node{
-        int val;
-        Node prev;
-        Node next;
-        public Node(int x) {
-            val = x;
-            prev = null;
-            next = null;
-        }
-    }
-    private TreeMap<Integer, ArrayList<Node>> tMap;
     final private Node head;
     final private Node tail;
-
+    private final TreeMap<Integer, ArrayList<Node>> tMap;
     public MaxStack() {
         tMap = new TreeMap<>();
         head = new Node(-1);
@@ -81,9 +70,22 @@ public class MaxStack {
         remove(lastNode);
         return x;
     }
+
     public void remove(Node node) {
         node.next.prev = node.prev;
         node.prev.next = node.next;
+    }
+
+    private class Node {
+        int val;
+        Node prev;
+        Node next;
+
+        public Node(int x) {
+            val = x;
+            prev = null;
+            next = null;
+        }
     }
 
 }

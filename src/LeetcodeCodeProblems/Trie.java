@@ -1,4 +1,5 @@
 package LeetcodeCodeProblems;
+
 class Node {
     Node[] links = new Node[26];
     boolean flag = false;
@@ -14,6 +15,7 @@ class Node {
     Node get(char ch) {
         return links[ch - 'a'];
     }
+
     void put(Node node, char ch) {
         links[ch - 'a'] = node;
     }
@@ -28,15 +30,17 @@ class Node {
 
 
 }
+
 public class Trie {
-    private Node root;
+    private final Node root;
+
     public Trie() {
         root = new Node();
     }
 
     public void insert(String word) {
         Node node = root;
-        for (char ch:word.toCharArray()) {
+        for (char ch : word.toCharArray()) {
             if (!node.containsKey(ch)) {
                 node.put(new Node(), ch);
             }
@@ -53,8 +57,7 @@ public class Trie {
                 node = node.get(word.charAt(i));
             }
         }
-        if (node.isEnd() == true) return true;
-        else return false;
+        return node.isEnd();
     }
 
     public boolean startsWith(String prefix) {

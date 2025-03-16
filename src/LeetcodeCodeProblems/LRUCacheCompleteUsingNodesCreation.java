@@ -5,10 +5,10 @@
 
 package LeetcodeCodeProblems;
 
-import jdk.jshell.execution.Util;
-
-import java.nio.channels.CompletionHandler;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 class CacheNode {
     int key, value;
@@ -24,8 +24,9 @@ class CacheNode {
 
 public class LRUCacheCompleteUsingNodesCreation {
     int capacity;
-    private CacheNode head, tail;
-    private Map<Integer, CacheNode> cacheMap;
+    private final CacheNode head;
+    private final CacheNode tail;
+    private final Map<Integer, CacheNode> cacheMap;
 
     public LRUCacheCompleteUsingNodesCreation(int capacity) {
         this.capacity = capacity;
@@ -34,6 +35,18 @@ public class LRUCacheCompleteUsingNodesCreation {
         cacheMap = new HashMap<>();
         head.right = tail;
         tail.left = head;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> cache = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3);
+        LRUCacheCompleteUsingNodesCreation cacheStructure = new LRUCacheCompleteUsingNodesCreation(5);
+        for (int ele : cache) {
+            cacheStructure.put(ele, ele);
+        }
+        for (CacheNode nodeElements : cacheStructure.cacheMap.values()) {
+            System.out.println(nodeElements.key + " " + nodeElements.value);
+        }
+
     }
 
     public void addToLast(CacheNode node) {
@@ -48,18 +61,6 @@ public class LRUCacheCompleteUsingNodesCreation {
         tempNode.left.right = tempNode.right;
         tempNode.left = null;
         tempNode.right = null;
-    }
-
-    public static void main(String[] args) {
-        List<Integer> cache = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3);
-        LRUCacheCompleteUsingNodesCreation cacheStructure = new LRUCacheCompleteUsingNodesCreation(5);
-        for (int ele : cache) {
-            cacheStructure.put(ele, ele);
-        }
-        for (CacheNode nodeElements : cacheStructure.cacheMap.values()) {
-            System.out.println(nodeElements.key + " " + nodeElements.value);
-        }
-
     }
 
     public int get(int key) {

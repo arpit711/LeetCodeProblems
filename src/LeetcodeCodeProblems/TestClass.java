@@ -1,4 +1,7 @@
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.PriorityQueue;
 
 public class TestClass {
 
@@ -49,7 +52,7 @@ public class TestClass {
 
     public static void main(String[] args) {
         // Example Test Case
-        List<Integer> item_weights = Arrays.asList(-3,-2,-1);
+        List<Integer> item_weights = Arrays.asList(-3, -2, -1);
         System.out.println(maximumSumDifference(item_weights)); // Output should be 4
     }
 }

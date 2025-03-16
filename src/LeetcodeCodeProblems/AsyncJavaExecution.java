@@ -1,8 +1,11 @@
 package LeetcodeCodeProblems;
+
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncJavaExecution {
-    public AsyncJavaExecution(){};
+    public AsyncJavaExecution() {
+    }
+
     public void asyncCallExample() {
         System.out.println("Main Thread: " + Thread.currentThread().getName());
         CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {

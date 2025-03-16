@@ -1,8 +1,8 @@
 package LeetcodeCodeProblems;
 
 public class MaxLengthPathDfs {
+    private static final int[] dir = {1, 0, -1, 0};
     private static int path = 0;
-    private static final int[] dir = {1, 0 , -1, 0};
 
     public static void main(String[] args) {
         String[] strArr = {"1234", "2345", "4567", "3456"};
@@ -12,7 +12,7 @@ public class MaxLengthPathDfs {
         int x = Integer.parseInt(st);
 //        String xs =
         String str = "Hello world";
-        String abc = new String("Hello world");
+        String abc = "Hello world";
 
         if (str.equals(abc)) System.out.println("Both are same");
         else System.out.println("they are different");
@@ -41,8 +41,7 @@ public class MaxLengthPathDfs {
     }
 
     public static boolean isValid(int i, int j, int[][] nums) {
-        if (i >=0 && j >=0 && i <nums.length && j < nums[0].length) return true;
-        return false;
+        return i >= 0 && j >= 0 && i < nums.length && j < nums[0].length;
     }
 
     public static int dfs(int[][] nums, int i, int j, int[][] visited, int steps) {
